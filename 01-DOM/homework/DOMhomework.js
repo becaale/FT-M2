@@ -55,12 +55,12 @@ function buildToDo(todo, index) {
   toDoShell.className = "toDoShell";
   let toDoText = document.createElement("span");
   toDoText.innerHTML = todo.description;
-  //toDoText.id = index;
-  toDoText.setAttribute("id", index);
+  toDoText.id = index;
+  //toDoText.setAttribute("id", index);
   if (todo.complete) {
     toDoText.className = "completeText";
   }
-  toDoShell.appendChild(toDoShell);
+  toDoShell.appendChild(toDoText);
   return toDoShell;
 }
 
@@ -71,7 +71,7 @@ function buildToDo(todo, index) {
 
 function buildToDos(toDos) {
   // Tu código acá:
-  
+  return toDos.map(buildToDo);
 }
 
 // La función 'displayToDos' se va a encargar de que se vean los toDo's en pantalla
@@ -85,6 +85,12 @@ function buildToDos(toDos) {
 
 function displayToDos() {
   // Tu código acá:
+  let toDoContainer = document.querySelector("#toDoContainer");
+  toDoContainer.innerHTML = "";
+  let newToDoItems = buildToDos(toDoItems);
+  for (let i = 0; i < newToDoItems.length; i++) {
+    toDoContainer.appendChild(newToDoItems[i]);
+  }
 }
 
 // La función 'addToDo' agregará un nuevo ToDo al array 'toDoItems'
@@ -140,7 +146,7 @@ function completeToDo(event) {
 // ********************************************** ----------- ********************************************** //
 
 // Acá debes insertar la llamada a 'displayToDos'
-
+displayToDos();
 // ---------------------------- NO CAMBIES NADA DE ACÁ PARA ABAJO ----------------------------- //
 if (typeof module !== "undefined") {
   module.exports = {
