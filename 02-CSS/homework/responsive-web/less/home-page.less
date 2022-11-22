@@ -1,17 +1,27 @@
 // Conteindo del Home
 
 .home {
-
   .intro {
-
     h2 {
       padding: 15px;
     }
 
     p {
-      padding:0 15px;
+      padding: 0 15px;
     }
+  }
 
+  .header-images {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%; 
+
+    img {
+      width: 100%;
+      margin: 5px;
+      border-radius: 20px;
+      height: 100%;
+    }
   }
 
   .music-images {
@@ -58,8 +68,22 @@
       }
 
       .btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        width: 100px;
+        height: 40px;
+        background-color: @btn-bg-color;
+        font-size: 1.6rem;
+        color:@porcelain
+        
       }
-    }
+      .btn:hover{
+        background-color: @river-bend;
+        color:@porcelain
+      }
+    } 
 
     .actual-img {
       width: 46%;

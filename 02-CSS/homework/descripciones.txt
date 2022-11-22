@@ -1,0 +1,12 @@
+Framework
+
+Un framework css es un conjunto de estilos predifinidos que nos ayuda de forma mas sencilla a crear sitios mas vistosos.
+
+preprocesador
+
+es un programa que nos permite generar CSS apartir de la sintaxis unica del preprocesador utilizado
+
+resposive website
+
+es un sistio que se ajusta en funcion del dispositivo
+
