@@ -52,18 +52,21 @@ ToDo.prototype.completeToDo = function () {
 function buildToDo(todo, index) {
   // Tu código acá:
   let toDoShell = document.createElement("div");
-  toDoShell.className = "toDoShell";
+  //toDoShell.className = "toDoShell";
+  toDoShell.setAttribute("class", "toDoShell");
   let toDoText = document.createElement("span");
   //let toDoText = document.createElement("checkbox");
   toDoText.innerHTML = todo.description;
-  toDoText.id = index;
+  //toDoText.id = index;
+  toDoText.setAttribute("id", index);
   toDoText.addEventListener("click", function (e) {
     completeToDo(e);
   });
-  //toDoText.setAttribute("id", index);
-  if (todo.complete) {
-    toDoText.className = "completeText";
-  }
+  todo.complete ? toDoText.setAttribute("class", "completeText") : null;
+  //if (todo.complete) {
+  //  //toDoText.className = "completeText";
+  //  toDoText.setAttribute("class", "completeText");
+  //}
   toDoShell.appendChild(toDoText);
   return toDoShell;
 }
@@ -75,6 +78,7 @@ function buildToDo(todo, index) {
 
 function buildToDos(toDos) {
   // Tu código acá:
+  //toDos.map((todo, index) => buildToDo(todo,index))
   return toDos.map(buildToDo);
 }
 
@@ -92,10 +96,11 @@ function displayToDos() {
   let toDoContainer = document.querySelector("#toDoContainer");
   toDoContainer.innerHTML = "";
   let newToDoItems = buildToDos(toDoItems);
-  for (let i = 0; i < newToDoItems.length; i++) {
+  newToDoItems.map(todo => toDoContainer.appendChild(todo))
+  /* for (let i = 0; i < newToDoItems.length; i++) {
     toDoContainer.appendChild(newToDoItems[i]);
     //console.log(newToDoItems[i]);
-  }
+  } */
 }
 
 // La función 'addToDo' agregará un nuevo ToDo al array 'toDoItems'
