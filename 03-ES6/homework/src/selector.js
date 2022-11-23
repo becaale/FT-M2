@@ -9,29 +9,24 @@ var traverseDomAndCollectElements = function (matchFunc, startEl) {
   // usa matchFunc para identificar elementos que matchien
 
   // TU CÓDIGO AQUÍ
-  if (startEl.hasChildNodes()) {
-    for (const element of startEl.childNodes) {
-      console.log(element);
-      if (matchFunc(element)) {
-        if (element.hasChildNodes()) {
-          resultSet = [
-            ...resultSet,
-            element,
-            ...traverseDomAndCollectElements(element),
-          ];
-        } else {
-          resultSet.push(element);
-        }
-      }
-    }
-  } else {
-    console.log(element);
-    if (matchFunc(startEl)) {
-      console.log(startEl);
-      resultSet.push(startEl);
-    }
+  if (matchFunc(startEl)) {
+    resultSet.push(startEl);
   }
 
+  if (startEl.children.length) {
+    for (let element of startEl.children) {
+      if (matchFunc(element)) {
+        resultSet.push(element);
+      }
+      if (element.children.length) {
+        resultSet = [
+          ...resultSet,
+          ...traverseDomAndCollectElements(matchFunc, element),
+        ];
+      }
+    }
+  }
+  //console.log(resultSet);
   return resultSet;
 };
 
