@@ -13,12 +13,12 @@ var traverseDomAndCollectElements = function (matchFunc, startEl) {
     resultSet.push(startEl);
   }
 
-  if (startEl.children.length) {
+  if (startEl.childElementCount) {
     for (let element of startEl.children) {
-      if (matchFunc(element)) {
+      if (matchFunc(element, startEl)) {
         resultSet.push(element);
       }
-      if (element.children.length) {
+      if (element.childElementCount) {
         resultSet = [
           ...resultSet,
           ...traverseDomAndCollectElements(matchFunc, element),
@@ -35,6 +35,8 @@ var traverseDomAndCollectElements = function (matchFunc, startEl) {
 
 var selectorTypeMatcher = function (selector) {
   // tu código aquí
+  if (selector.indexOf(">") > 0) return "CC";
+  if (selector.indexOf(" ") > 0) return "DC";
   if (selector.indexOf("#") === 0) return "id";
   if (selector.indexOf(".") === 0) {
     return "class";
@@ -53,7 +55,27 @@ var selectorTypeMatcher = function (selector) {
 var matchFunctionMaker = function (selector) {
   let selectorType = selectorTypeMatcher(selector);
   //let matchFunction;
-  if (selectorType === "id") {
+  console.log(selectorType);
+  if (selectorType === "CC") {
+    return (elemento, parentEl) => {
+      if (!parentEl) return false;
+      return parentEl.tagName.toLowerCase() ===
+        selector.toLowerCase().split(" > ")[0] &&
+        elemento.tagName.toLowerCase() ===
+          selector.toLowerCase().split(" > ")[1]
+        ? true
+        : false;
+    };
+  } else if (selectorType === "DC") {
+    return (elemento, parentEl) => {
+      if (!parentEl) return false;
+      return parentEl.tagName.toLowerCase() ===
+        selector.toLowerCase().split(" ")[0] &&
+        elemento.tagName.toLowerCase() === selector.toLowerCase().split(" ")[1]
+        ? true
+        : false;
+    };
+  } else if (selectorType === "id") {
     return (elemento) =>
       elemento.id.toLowerCase() === selector.slice(1).toLowerCase()
         ? true
