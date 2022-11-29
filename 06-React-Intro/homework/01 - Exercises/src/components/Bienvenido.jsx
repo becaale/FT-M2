@@ -13,10 +13,9 @@ export default function Bienvenido() {
       <h3>{studentName}</h3>
       <ul>
         {techSkills.map((skill) => {
-          return <li>{skill}</li>;
+          return <li key={skill}>{skill}</li>;
         })}
       </ul>
-      {console.log(alerts)}
       <Botones alerts={alerts} />
     </div>
   );

@@ -5,25 +5,12 @@ export default class Botones extends React.Component {
     super(props);
   }
 
-  render(props) {
+  render() {
     return (
       <div>
-        {console.log(props)}
-        <button onClick={() => alert(props.alerts.m1)}>Módulo 1</button>
-        <button onClick={() => alert(props.alerts.m2)}>Módulo 2</button>
+        <button onClick={() => alert(this.props.alerts.m1)}>Módulo 1</button>
+        <button onClick={() => alert(this.props.alerts.m2)}>Módulo 2</button>
       </div>
     );
   }
 }
-
-/* export default function Botones(props) {
-    // el código de tu componente acá
-    return (
-        <>
-        <div>
-          <button onClick={() => alert(props.m1)}>Módulo 1</button>
-          <button onClick={() => alert(props.m2)}>Módulo 2</button>
-        </div>
-      </>
-    );
-  } */
