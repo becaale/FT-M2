@@ -17,10 +17,16 @@ const techSkills = [
 ];
 const alerts = { m1: "Aprobado", m2: "En curso" };
 
+const h1Style = {
+  color: "red",
+};
+
 export default function Bienvenido() {
   return (
     <div className={styles.divBienvenido}>
-      <h1 className={styles.title}>soy Henry!</h1>
+      <h1 style={h1Style} className={styles.title}>
+        soy Henry!
+      </h1>
       <h3 className={styles.subtitle}>{studentName}</h3>
       <ul className={styles.unorderedList}>
         {techSkills.map((skill) => (
