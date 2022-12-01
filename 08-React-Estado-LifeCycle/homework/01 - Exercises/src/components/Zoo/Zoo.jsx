@@ -15,37 +15,6 @@ export default function Zoo() {
     allAnimals: [],
   });
 
-  /*   React.useEffect(() => {
-    //let ignore = false;
-    fetch("http://localhost:3001/zoo")
-      .then((response) => response.json())
-      .then((data) => {
-        // if (!ignore && data) {
-        console.log(data);
-        setZoo((zooPrev) => {
-          return {
-            ...zooPrev,
-            animals: data.animals,
-            species: data.species,
-            allAnimals: data.animals,
-          };
-        });
-        // }
-      });
-    return () => {
-      //ignore = true;
-    }; 
-  }, [zoo]); */
-
-  /*   React.useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios("http://localhost:3001/zoo");
-
-      setZoo(result.data);
-    };
-
-    fetchData();
-  }, []); */
   React.useEffect(() => {
     fetch("http://localhost:3001/zoo")
       .then((res) => res.json())
@@ -64,31 +33,25 @@ export default function Zoo() {
 
   const handleSpecies = (event) => {
     handleAllSpecies();
-    setZoo(
-      (zooPrev) => {
-        return {
-          ...zooPrev,
-          animals: [
-            ...zooPrev.animals.filter(
-              (element) => element.specie === event.target.value
-            ),
-          ],
-        };
-      },
-      () => {}
-    );
+    setZoo((zooPrev) => {
+      return {
+        ...zooPrev,
+        animals: [
+          ...zooPrev.animals.filter(
+            (element) => element.specie === event.target.value
+          ),
+        ],
+      };
+    });
   };
 
   const handleAllSpecies = (event) => {
-    setZoo(
-      (zooPrev) => {
-        return {
-          ...zooPrev,
-          animals: [...zooPrev.allAnimals],
-        };
-      },
-      () => {}
-    );
+    setZoo((zooPrev) => {
+      return {
+        ...zooPrev,
+        animals: [...zooPrev.allAnimals],
+      };
+    });
   };
 
   const handleInputChange = (event) => {
