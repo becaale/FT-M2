@@ -1,19 +1,19 @@
 import React from "react";
 
 export default function Species(props) {
-  const { species, handleSpecies, handleAllSpecies } = props;
+  /*  const { species, handleSpecies, handleAllSpecies } = props; */
 
   return (
     <div>
       <h2>Species</h2>
-      {species.map((specie, key) => {
+      {props.species.map((specie) => {
         return (
-          <button key={key} onClick={handleSpecies} value={specie}>
+          <button key={specie} onClick={props.handleSpecies} value={specie}>
             {specie}
           </button>
         );
       })}
-      <button onClick={handleAllSpecies}>All Animals</button>
+      <button onClick={props.handleAllSpecies}>All Animals</button>
     </div>
   );
 }
