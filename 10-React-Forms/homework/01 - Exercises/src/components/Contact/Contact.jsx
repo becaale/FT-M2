@@ -57,17 +57,17 @@ export default function Contact() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const property = event.target.name;
-    const value = event.target.value;
+    /*    const property = event.target.name;
+    const value = event.target.value; */
     if (Object.keys(errors).length > 0) {
-      alert("Debes corregir todos los errores");
+      alert("Debes corregir los errores");
     } else {
       alert("Datos completos");
     }
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
         <label htmlFor="Name">Nombre:</label>
         <input
