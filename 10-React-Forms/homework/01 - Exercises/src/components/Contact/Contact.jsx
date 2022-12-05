@@ -4,23 +4,14 @@ import "./Contact.modules.css";
 // eslint-disable-next-line
 const regexEmail = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
 
-export function validate(inputs) {
+export function validate({ name, email, phone, subject, message }) {
   const errors = {};
-  if (!inputs.name) {
-    errors.name = "Se requiere un nombre";
-  }
-  if (!regexEmail.test(inputs.email)) {
-    errors.email = "Debe ser un correo electrónico";
-  }
-  if (inputs.phone < 0) {
-    errors.phone = "Sólo números positivos";
-  }
-  if (!inputs.subject) {
-    errors.subject = "Se requiere un asunto";
-  }
-  if (!inputs.message) {
-    errors.message = "Se requiere un mensaje";
-  }
+  //errors.name = !name ? "Se requiere un nombre" : errors.name;
+  if (!name) errors.name = "Se requiere un nombre";
+  if (!regexEmail.test(email)) errors.email = "Debe ser un correo electrónico";
+  if (phone < 0) errors.phone = "Sólo números positivos";
+  if (!subject) errors.subject = "Se requiere un asunto";
+  if (!message) errors.message = "Se requiere un mensaje";
   return errors;
 }
 
@@ -69,16 +60,16 @@ export default function Contact() {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="Name">Nombre:</label>
+        <label htmlFor="name">Nombre:</label>
         <input
           type="text"
           name="name"
           placeholder="Escribe tu nombre..."
           value={inputs.name}
           onChange={handleChange}
-          className={errors?.name && "warning"}
+          className={errors.name && "warning"}
         />
-        <p className="danger">{errors?.name}</p>
+        <p className="danger">{errors.name}</p>
       </div>
       <div>
         <label htmlFor="email">Correo Electrónico:</label>
@@ -88,9 +79,9 @@ export default function Contact() {
           placeholder="Escribe tu email..."
           value={inputs.email}
           onChange={handleChange}
-          className={errors?.email && "warning"}
+          className={errors.email && "warning"}
         />
-        <p className="danger">{errors?.email}</p>
+        <p className="danger">{errors.email}</p>
       </div>
       <div>
         <label htmlFor="phone">Teléfono:</label>
@@ -100,9 +91,9 @@ export default function Contact() {
           placeholder="Escribe un teléfono..."
           value={inputs.phone}
           onChange={handleChange}
-          className={errors?.phone && "warning"}
+          className={errors.phone && "warning"}
         />
-        <p className="danger">{errors?.phone}</p>
+        <p className="danger">{errors.phone}</p>
       </div>
       <div>
         <label htmlFor="subject">Asunto:</label>
@@ -112,9 +103,9 @@ export default function Contact() {
           placeholder="Escribe el asunto..."
           value={inputs.subject}
           onChange={handleChange}
-          className={errors?.subject && "warning"}
+          className={errors.subject && "warning"}
         />
-        <p className="danger">{errors?.subject}</p>
+        <p className="danger">{errors.subject}</p>
       </div>
       <div>
         <label htmlFor="message">Mensaje:</label>
@@ -124,9 +115,9 @@ export default function Contact() {
           placeholder="Escribe tu mensaje..."
           value={inputs.message}
           onChange={handleChange}
-          className={errors?.message && "warning"}
+          className={errors.message && "warning"}
         />
-        <p className="danger">{errors?.message}</p>
+        <p className="danger">{errors.message}</p>
       </div>
       <div>
         <button type="submit" onClick={handleSubmit}>
