@@ -21,16 +21,26 @@ function renderContador() {
 // Ejecutamos la función 'renderContador':
 renderContador();
 // Nos subscribimos al store pasándole la misma función. Así cada vez que llegue una acción, ejecutamos la función:
-store.subscribe(() => {renderContador();});
+store.subscribe(() => {
+  renderContador();
+});
 // Por último, utilizamos los botones de nuestro HTML para que cada vez que hagamos click,
 // hagan un dispatch al store de la acción correspondiente:
 
 document.getElementById("incremento").addEventListener("click", () => {
   store.dispatch(incremento);
-  renderContador();
 });
 
 document.getElementById("decremento").addEventListener("click", () => {
-  store.dispatch(decremento);
-  renderContador();
+  store.getstore().contador > 0 && store.dispatch(decremento);
+});
+
+document.getElementById("incrementoImpar").addEventListener("click", () => {
+  valor.innerHTML % 2 !== 0 && store.dispatch(incremento);
+});
+
+document.getElementById("decrementoAsync").addEventListener("click", () => {
+  setTimeout(() => {
+    store.dispatch(decremento);
+  }, 1000);
 });

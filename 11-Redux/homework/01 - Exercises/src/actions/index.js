@@ -5,9 +5,17 @@ const { INCREMENTO, DECREMENTO } = require("../action-types");
 // de manejar ninguna de las lógicas actuales de actualización del store central de Redux.
 // Eso se lo deja al reducer(s).
 
-const incremento = { type: INCREMENTO };
+// const incremento = { type: INCREMENTO };
 
-const decremento = { type: DECREMENTO };
+const incremento = () => {
+  return { type: INCREMENTO };
+};
+
+//const decremento = { type: DECREMENTO };
+
+const decremento = () => {
+  return { type: DECREMENTO };
+};
 
 module.exports = {
   incremento,
