@@ -21,9 +21,7 @@ function renderContador() {
 // Ejecutamos la función 'renderContador':
 renderContador();
 // Nos subscribimos al store pasándole la misma función. Así cada vez que llegue una acción, ejecutamos la función:
-store.subscribe(() => {
-  renderContador();
-});
+store.subscribe(() => {renderContador();});
 // Por último, utilizamos los botones de nuestro HTML para que cada vez que hagamos click,
 // hagan un dispatch al store de la acción correspondiente:
 
