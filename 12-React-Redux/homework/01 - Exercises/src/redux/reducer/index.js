@@ -1,23 +1,24 @@
-import { ADD_PRODUCT, DELETE_PRODUCT } from "../actions/types";
+import { ADD_PRODUCT, DELETE_PRODUCT, GET_STORE_NAME } from "../actions/types";
 
 const initialState = {
   list: [],
+  storeName: "",
 };
 
-export default rootReducer = (state = initialState, { type, payload }) => {
+const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case ADD_PRODUCT:
       return { ...state, list: [...state.list, payload] };
-      break;
     case DELETE_PRODUCT:
       return {
         ...state,
         list: [...state.list.filter((element) => element.id !== payload)],
       };
-      break;
-
+    case GET_STORE_NAME:
+      return { ...state, storeName: payload.name };
     default:
       return state;
-      break;
   }
 };
+
+export default rootReducer;
